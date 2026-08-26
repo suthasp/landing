@@ -134,14 +134,14 @@ svg { stroke: currentColor; }
 
 .logo {
     display: inline-flex; align-items: center; gap: 5px;
-    font-family: var(--font-head); font-size: 28px; font-weight: 700;
+    font-family: "Poppins", var(--font-head); font-size: 28px; font-weight: 700;
     letter-spacing: .02em; color: var(--logo-ink); line-height: 1;
 }
 .logo__text { color: inherit; }
 .logo__text--accent { color: var(--logo-accent); }
 .logo__mark { width: 42px; height: 42px; margin-inline: -3px; flex: none; }
-.logo__x { fill: var(--logo-ink); stroke: none; }
-.logo__x-echo { fill: var(--logo-accent); stroke: none; }
+.logo__x-outline { fill: none; stroke: var(--logo-ink); stroke-width: 2.4; stroke-linejoin: round; }
+.logo__x-inner { fill: none; stroke: var(--logo-accent); stroke-width: 6; stroke-linecap: round; }
 
 .nav { display: flex; align-items: center; gap: 26px; margin-left: 30px; }
 .nav > a { font-size: 15.5px; font-weight: 500; color: var(--ink); position: relative; }
