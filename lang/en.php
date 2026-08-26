@@ -24,7 +24,7 @@ return [
         'badge'      => 'Data Center Facility & Critical Environment Consultant',
         'title_1'    => 'Is Your Server Room Ready',
         'title_2'    => 'for Power Outages & System',
-        'title_mark' => 'Failures?',
+        'title_mark' => ' Failures?',
         'lead'       => 'We audit, plan preventive maintenance, and train your team — with real hands-on experience in Facility Operation, Preventive & Corrective Maintenance inside professional-grade Data Centers — so your systems stay up, not just recover quickly.',
         'cta_1'      => 'Free Consultation',
         'cta_2'      => 'Our Services',

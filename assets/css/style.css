@@ -23,6 +23,8 @@
     --line-strong:    #c6d3e2;
     --shadow:         0 1px 2px rgba(18, 39, 74, .04), 0 12px 32px -18px rgba(18, 39, 74, .28);
     --shadow-lg:      0 24px 60px -28px rgba(18, 39, 74, .45);
+    --logo-ink:       #12274a;
+    --logo-accent:    #0fa8c4;
     --ok:             #16a34a;
     --warn:           #d97706;
     --danger:         #dc2626;
@@ -48,6 +50,8 @@
     --surface-2:      #142640;
     --line:           #21304a;
     --line-strong:    #2c3f5e;
+    --logo-ink:       #ffffff;
+    --logo-accent:    #41d7f0;
     --shadow:         0 1px 2px rgba(0, 0, 0, .3), 0 14px 34px -20px rgba(0, 0, 0, .8);
     --shadow-lg:      0 26px 64px -30px rgba(0, 0, 0, .9);
 }
@@ -128,10 +132,16 @@ svg { stroke: currentColor; }
 .site-header__brand { display: inline-flex; align-items: center; }
 .site-header__tools { display: flex; align-items: center; gap: 10px; margin-left: auto; }
 
-.logo { display: inline-flex; align-items: center; gap: 2px; font-family: var(--font-head); font-size: 27px; font-weight: 700; letter-spacing: .01em; color: var(--navy); }
-.logo__mark { width: 34px; height: 34px; margin-inline: -1px; }
-.logo__diamond { stroke: var(--navy); }
-.logo__x { stroke: var(--brand-bright); }
+.logo {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-family: var(--font-head); font-size: 28px; font-weight: 700;
+    letter-spacing: .02em; color: var(--logo-ink); line-height: 1;
+}
+.logo__text { color: inherit; }
+.logo__text--accent { color: var(--logo-accent); }
+.logo__mark { width: 42px; height: 42px; margin-inline: -3px; flex: none; }
+.logo__x { fill: var(--logo-ink); stroke: none; }
+.logo__x-echo { fill: var(--logo-accent); stroke: none; }
 
 .nav { display: flex; align-items: center; gap: 26px; margin-left: 30px; }
 .nav > a { font-size: 15.5px; font-weight: 500; color: var(--ink); position: relative; }
@@ -363,8 +373,8 @@ svg { stroke: currentColor; }
     .grid--4, .steps { grid-template-columns: 1fr; }
     .stats { grid-template-columns: 1fr; gap: 18px; margin-top: 40px; }
     .hero__actions .btn { width: 100%; }
-    .logo { font-size: 23px; }
-    .logo__mark { width: 29px; height: 29px; }
+    .logo { font-size: 24px; }
+    .logo__mark { width: 36px; height: 36px; }
     .site-footer__grid { grid-template-columns: 1fr; }
 }
 

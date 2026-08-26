@@ -1,12 +1,16 @@
 <?php
 declare(strict_types=1);
-/** โลโก้ TE[X]SON — วาดด้วย SVG ปรับสีตามธีมได้ */
+/**
+ * โลโก้ TE[X]SON — วาดด้วย SVG ล้วน ปรับสีตามธีมผ่านตัวแปร CSS
+ * X = รูปทรงเหลี่ยมคม ซ้อนกัน 2 ชั้น (ชั้นหลังสีฟ้าเหลื่อมออกมา)
+ */
+$logoX = 'M4 9 13 4 24 17 35 4 44 9 31 24 44 39 35 44 24 31 13 44 4 39 17 24Z';
 ?>
 <span class="logo" aria-label="TEXSON">
     <span class="logo__text">TE</span>
-    <svg class="logo__mark" viewBox="0 0 44 44" role="presentation" focusable="false" aria-hidden="true">
-        <path class="logo__diamond" d="M22 3 41 22 22 41 3 22Z" fill="none" stroke-width="2.5" stroke-linejoin="round"/>
-        <path class="logo__x" d="M13 13 31 31M31 13 13 31" fill="none" stroke-width="4.5" stroke-linecap="round"/>
+    <svg class="logo__mark" viewBox="0 0 48 48" role="presentation" focusable="false" aria-hidden="true">
+        <path class="logo__x-echo" d="<?= $logoX ?>" transform="translate(4.5 -4.5)"/>
+        <path class="logo__x" d="<?= $logoX ?>"/>
     </svg>
-    <span class="logo__text">SON</span>
+    <span class="logo__text logo__text--accent">SON</span>
 </span>
