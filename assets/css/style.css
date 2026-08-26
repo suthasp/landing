@@ -160,10 +160,11 @@ svg { stroke: currentColor; }
     background: var(--surface); transition: border-color .18s ease, color .18s ease, transform .18s ease;
 }
 .icon-btn:hover { color: var(--brand); border-color: var(--brand); transform: translateY(-1px); }
+/* ไอคอนแสดง "โหมดที่จะสลับไป": โหมดสว่างเห็นพระจันทร์ / โหมดมืดเห็นพระอาทิตย์ */
 .icon { width: 20px; height: 20px; fill: none; }
-.icon--moon { display: none; }
-[data-theme="dark"] .icon--sun { display: none; }
-[data-theme="dark"] .icon--moon { display: block; }
+.icon--sun { display: none; }
+[data-theme="dark"] .icon--sun { display: block; }
+[data-theme="dark"] .icon--moon { display: none; }
 
 .burger { display: none; width: 44px; height: 42px; padding: 11px 10px; background: var(--surface); border: 1.5px solid var(--line-strong); border-radius: 12px; cursor: pointer; }
 .burger span { display: block; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .2s ease, opacity .2s ease; }
