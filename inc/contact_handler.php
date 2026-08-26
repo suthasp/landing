@@ -103,24 +103,30 @@ if ($errors && !$isBot) {
         }
 
         if (cfg('mail.enabled')) {
-            $subject = '[TEXSON] New enquiry from ' . $name;
+            $subject = (string)cfg('mail.subject_prefix', '[TEXSON] ') . 'ติดต่อจากเว็บไซต์: ' . $name;
             $body    = implode("\n", [
-                'Name:    ' . $name,
-                'Company: ' . ($company !== '' ? $company : '-'),
-                'Contact: ' . $contact,
-                'Service: ' . ($options[$service] ?? '-'),
-                'Lang:    ' . current_lang(),
-                'Time:    ' . date('Y-m-d H:i:s'),
+                'มีผู้ติดต่อเข้ามาผ่านฟอร์มบนเว็บไซต์',
                 '',
-                'Details:',
+                'ชื่อ–นามสกุล : ' . $name,
+                'บริษัท       : ' . ($company !== '' ? $company : '-'),
+                'ติดต่อกลับ    : ' . $contact,
+                'บริการที่สนใจ : ' . ($options[$service] ?? '-'),
+                'ภาษาที่ใช้    : ' . (current_lang() === 'th' ? 'ไทย' : 'อังกฤษ'),
+                'เวลา         : ' . date('d/m/Y H:i:s') . ' น.',
+                '',
+                'รายละเอียด:',
                 $details !== '' ? $details : '-',
             ]);
-            $headers = implode("\r\n", [
-                'From: TEXSON Website <' . cfg('mail.from') . '>',
-                'Content-Type: text/plain; charset=UTF-8',
-                'MIME-Version: 1.0',
-            ]);
-            @mail((string)cfg('mail.to'), '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, $headers);
+
+            // ถ้าผู้ติดต่อกรอกอีเมลมา จะกด "ตอบกลับ" ได้ทันที
+            $replyTo = filter_var($contact, FILTER_VALIDATE_EMAIL) ? $contact : '';
+
+            [$sent, $error] = mailer_send((string)cfg('mail.to'), $subject, $body, ['reply_to' => $replyTo]);
+            if ($sent) {
+                mailer_log('ส่งสำเร็จ → ' . (string)cfg('mail.to') . ' (จาก: ' . $name . ')');
+            }
+        } else {
+            mailer_log('ข้ามการส่งเมล เพราะ mail.enabled = false (ข้อมูลถูกบันทึกใน leads.csv แล้ว)');
         }
 
         $_SESSION['last_submit'] = time();

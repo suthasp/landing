@@ -1,2 +1,5 @@
 storage/leads.csv
+storage/mail.log
+inc/config.local.php
 .DS_Store
+deploy-texson.zip

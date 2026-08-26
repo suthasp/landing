@@ -14,6 +14,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 $GLOBALS['CFG'] = require __DIR__ . '/config.php';
 require __DIR__ . '/helpers.php';
+require __DIR__ . '/mailer.php';
 
 /* ---------- ภาษา: ?lang=xx > cookie > ค่าเริ่มต้น ---------- */
 $languages = cfg('languages', ['th', 'en']);
