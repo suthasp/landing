@@ -1,0 +1,2 @@
+# กันไม่ให้เข้าถึงไฟล์ leads โดยตรงผ่านเว็บ (Apache)
+Require all denied

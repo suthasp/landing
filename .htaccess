@@ -1,0 +1,7 @@
+# ปิดการ list ไดเรกทอรี และกันไฟล์ระบบ (Apache เท่านั้น)
+Options -Indexes
+DirectoryIndex index.php
+
+<FilesMatch "\.(csv|log)$">
+    Require all denied
+</FilesMatch>
