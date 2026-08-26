@@ -5,9 +5,9 @@
         <div class="hero__content reveal">
             <span class="badge"><?= te('hero.badge') ?></span>
 
+            <?php /* ไทยตัดบรรทัดเองตามที่กำหนด (ไม่มีช่องว่างระหว่างคำ) ส่วนอังกฤษให้เบราว์เซอร์เกลี่ยบรรทัดด้วย text-wrap: balance */ ?>
             <h1 class="hero__title">
-                <?= te('hero.title_1') ?><br>
-                <?= te('hero.title_2') ?><span class="mark"><?= te('hero.title_mark') ?></span>
+                <?= te('hero.title_1') ?><?= current_lang() === 'th' ? '<br>' : ' ' ?><?= te('hero.title_2') ?><span class="mark"><?= te('hero.title_mark') ?></span>
             </h1>
 
             <p class="hero__lead"><?= te('hero.lead') ?></p>
