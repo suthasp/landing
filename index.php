@@ -22,7 +22,8 @@ require __DIR__ . '/inc/contact_handler.php';   // ทำงานเฉพา�
 <meta property="og:title" content="<?= te('meta.title') ?>">
 <meta property="og:description" content="<?= te('meta.description') ?>">
 <meta property="og:locale" content="<?= current_lang() === 'th' ? 'th_TH' : 'en_US' ?>">
-<link rel="icon" href="<?= e(asset('assets/img/favicon.svg')) ?>" type="image/svg+xml">
+<link rel="icon" href="<?= e(asset('assets/img/favicon-128.png')) ?>" type="image/png" sizes="128x128">
+<link rel="apple-touch-icon" href="<?= e(asset('assets/img/favicon-128.png')) ?>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">

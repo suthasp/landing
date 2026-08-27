@@ -28,7 +28,7 @@ php -S localhost:8000
 | `inc/contact_handler.php` | รับ POST จากฟอร์ม → ตรวจสอบ → บันทึก → redirect |
 | `lang/th.php`, `lang/en.php` | ข้อความทั้งหมดของเว็บ (แก้คอนเทนต์ที่นี่) |
 | `partials/*.php` | แต่ละ section: header, hero, problems, services, products, why, process, contact, footer |
-| `assets/` | CSS / JS / favicon |
+| `assets/` | CSS / JS / โลโก้ / favicon |
 | `storage/leads.csv` | รายชื่อผู้ติดต่อที่ส่งฟอร์มเข้ามา (สร้างอัตโนมัติ) |
 
 ## ฟีเจอร์
@@ -106,6 +106,9 @@ php tools/diagnose.php
 - ข้อความ/หัวข้อ/รายการทั้งหมด → `lang/th.php` และ `lang/en.php` (โครงสร้าง key เหมือนกันทั้งสองไฟล์)
 - เบอร์โทร อีเมล เวลาทำการ → `inc/config.php` (แสดงผลทั้งส่วนติดต่อและ footer)
 - สี/ฟอนต์ → ตัวแปร CSS ด้านบนของ `assets/css/style.css` (`--brand`, `--navy`, `--bg` ...)
+- โลโก้ → `assets/img/logo-light.png` (พื้นสว่าง) และ `logo-dark.png` (พื้นมืด) สลับอัตโนมัติตามธีม
+  ไฟล์ต้นฉบับที่ยังไม่ครอปคือ `dark-preview.png` / `light-preview.png`
+  ไฟล์อื่นที่แตกมาจากโลโก้: `logo-mark.png` (ตัว X อย่างเดียว), `favicon-128.png`, `logo-banner.png`
 
 ## หมายเหตุด้านความปลอดภัย
 
