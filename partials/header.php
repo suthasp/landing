@@ -1,5 +1,5 @@
 <?php declare(strict_types=1); ?>
-<header class="site-header" id="top">
+<header class="site-header">
     <div class="container site-header__inner">
         <a class="site-header__brand" href="<?= e(url_with([])) ?>#top">
             <?php section('logo'); ?>

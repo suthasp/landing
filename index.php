@@ -42,6 +42,9 @@ require __DIR__ . '/inc/contact_handler.php';   // ทำงานเฉพา�
 </script>
 </head>
 <body>
+<?php /* จุดยึดของลิงก์ "กลับขึ้นด้านบน" ต้องไม่อยู่บน header ที่เป็น sticky
+         เพราะ header ติดขอบบนตลอด เบราว์เซอร์จะถือว่าเห็นอยู่แล้วและไม่เลื่อนหน้า */ ?>
+<span id="top"></span>
 <a class="skip-link" href="#main"><?= current_lang() === 'th' ? 'ข้ามไปยังเนื้อหาหลัก' : 'Skip to main content' ?></a>
 
 <?php section('header'); ?>
