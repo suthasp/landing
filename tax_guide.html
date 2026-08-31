@@ -1,563 +1,492 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="th" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>คู่มือบัญชีและภาษีบริษัทตั้งใหม่</title>
+<title>คู่มือบัญชีและภาษีบริษัทตั้งใหม่ — TEXSON</title>
+<meta name="description" content="ลำดับหน้าที่ตามกฎหมายที่บริษัทจำกัดต้องทำหลังจดทะเบียน ตั้งแต่วันแรกจนถึงปฏิทินภาษีรายเดือนและรายปี">
+<meta name="theme-color" content="#0f2544">
+<link rel="icon" href="assets/img/favicon-128.png" type="image/png" sizes="128x128">
+<link rel="apple-touch-icon" href="assets/img/favicon-128.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+/* ==========================================================================
+   คู่มือบัญชีและภาษี — สไตล์เฉพาะหน้านี้ ต่อยอดจาก assets/css/style.css
+   ใช้ token ชุดเดียวกับเว็บหลัก (--brand, --ink, --line, --surface, --radius)
+   ========================================================================== */
 
-:root{
-  --bg: #f6f4ee;
-  --bg-raised: #ffffff;
-  --ink: #21261f;
-  --ink-soft: #4b5245;
-  --line: #d9d4c4;
-  --line-soft: #e6e2d4;
-  --accent: #16594a;
-  --accent-soft: #e2ece7;
-  --gold: #96731f;
-  --gold-soft: #f2e9d4;
-  --danger: #8a3324;
-  --danger-soft: #f4e3dd;
-  --code-bg: #eef0e6;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg: #191d17;
-    --bg-raised: #21261f;
-    --ink: #eae7db;
-    --ink-soft: #b7bcac;
-    --line: #383e33;
-    --line-soft: #2b3128;
-    --accent: #6fbfa4;
-    --accent-soft: #223530;
-    --gold: #d8b872;
-    --gold-soft: #332b18;
-    --danger: #e3a08e;
-    --danger-soft: #3a2620;
-    --code-bg: #262b21;
-  }
-}
-:root[data-theme="dark"]{
-  --bg: #191d17;
-  --bg-raised: #21261f;
-  --ink: #eae7db;
-  --ink-soft: #b7bcac;
-  --line: #383e33;
-  --line-soft: #2b3128;
-  --accent: #6fbfa4;
-  --accent-soft: #223530;
-  --gold: #d8b872;
-  --gold-soft: #332b18;
-  --danger: #e3a08e;
-  --danger-soft: #3a2620;
-  --code-bg: #262b21;
-}
+/* ปุ่มสลับธีมบนหน้านี้เป็น <button> (หน้าเป็น HTML ล้วน ไม่มีลิงก์ ?theme= แบบฝั่ง PHP) */
+.icon-btn { cursor: pointer; }
 
-*{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--ink);
-  font-family:"Noto Sans Thai","Noto Sans",sans-serif;
-  font-size:16px;
-  line-height:1.75;
+/* ---- โครงหน้า: สารบัญ + เนื้อหา ---- */
+.guide {
+    display: grid;
+    grid-template-columns: 250px minmax(0, 1fr);
+    gap: clamp(32px, 4.5vw, 64px);
+    align-items: start;
+    padding: clamp(34px, 4.5vw, 60px) 0 clamp(64px, 8vw, 104px);
 }
-::selection{background:var(--accent-soft);}
+.guide__head { grid-column: 1 / -1; padding-bottom: 30px; border-bottom: 1px solid var(--line); }
+.guide__title {
+    margin-top: 20px; font-size: clamp(28px, 4vw, 44px); font-weight: 700;
+    letter-spacing: -.02em; text-wrap: balance; max-width: 18ch;
+}
+.guide__lead { margin-top: 18px; max-width: 70ch; font-size: clamp(16px, 1.6vw, 18px); }
+.guide__meta { display: flex; flex-wrap: wrap; gap: 8px 30px; margin-top: 24px; font-size: 14.5px; color: var(--muted); }
+.guide__meta b { color: var(--ink); font-weight: 600; }
 
-.page{
-  max-width:1180px;
-  margin:0 auto;
-  display:grid;
-  grid-template-columns:260px minmax(0,1fr);
-  gap:56px;
-  padding:48px 32px 120px;
+/* ---- สารบัญ ---- */
+.toc { position: sticky; top: 100px; align-self: start; font-size: 15px; }
+.toc__label { font-family: var(--font-head); font-size: 13px; font-weight: 600; letter-spacing: .16em; color: var(--brand); margin-bottom: 14px; }
+.toc ol { border-left: 1px solid var(--line); }
+.toc a {
+    display: block; padding: 9px 0 9px 16px; margin-left: -1px;
+    color: var(--body); border-left: 2px solid transparent;
+    transition: color .18s ease, border-color .18s ease;
 }
-@media (max-width:900px){
-  .page{grid-template-columns:1fr; padding:28px 18px 80px;}
-  .toc{position:static !important; order:2;}
-}
+.toc a:hover { color: var(--ink); }
+.toc a.is-active { color: var(--brand); border-left-color: var(--brand); font-weight: 600; }
+.toc__num { font-family: var(--font-head); font-size: 13px; font-weight: 600; color: var(--brand-bright); margin-right: 9px; font-variant-numeric: tabular-nums; }
 
-/* ---- Header / masthead ---- */
-.masthead{
-  grid-column:1 / -1;
-  border-bottom:2px solid var(--ink);
-  padding-bottom:28px;
-  margin-bottom:8px;
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-}
-.eyebrow{
-  font-family:"IBM Plex Mono",monospace;
-  font-size:12px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:var(--accent);
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.eyebrow::before{
-  content:"";
-  width:8px;height:8px;border-radius:50%;
-  background:var(--accent);
-  display:inline-block;
-}
-h1.title{
-  font-family:"Noto Serif Thai",serif;
-  font-weight:700;
-  font-size:clamp(2rem,4vw,2.9rem);
-  line-height:1.25;
-  margin:0;
-  text-wrap:balance;
-  max-width:16ch;
-}
-.subtitle{
-  font-size:17px;
-  color:var(--ink-soft);
-  max-width:62ch;
-  margin:0;
-}
-.masthead-meta{
-  display:flex;
-  gap:28px;
-  flex-wrap:wrap;
-  font-family:"IBM Plex Mono",monospace;
-  font-size:12.5px;
-  color:var(--ink-soft);
-  margin-top:6px;
-}
-.masthead-meta b{color:var(--ink); font-weight:600;}
+/* ---- เนื้อหา ---- */
+.guide__main { min-width: 0; }
+.guide__section { margin-bottom: clamp(48px, 6vw, 76px); scroll-margin-top: 104px; }
+.guide__section:last-child { margin-bottom: 0; }
+.guide__section-head { display: flex; align-items: baseline; gap: 14px; }
+.guide__section-num { font-family: var(--font-head); font-size: 15px; font-weight: 700; color: var(--brand-bright); font-variant-numeric: tabular-nums; }
+.guide__section h2 { font-size: clamp(22px, 2.6vw, 29px); font-weight: 700; }
+.guide__intro { margin: 12px 0 26px; max-width: 68ch; font-size: clamp(15.5px, 1.5vw, 17px); }
+.rule { border: none; border-top: 1px solid var(--line); margin: 0 0 26px; }
 
-/* ---- TOC ---- */
-.toc{
-  position:sticky;
-  top:32px;
-  align-self:start;
-  font-size:14px;
+/* ---- รายการงาน (การ์ดแนวนอน) ---- */
+.stack { display: grid; gap: 14px; }
+.item {
+    display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: start;
+    padding: 18px 20px; background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius); box-shadow: var(--shadow);
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
 }
-.toc-label{
-  font-family:"IBM Plex Mono",monospace;
-  font-size:11px;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  color:var(--ink-soft);
-  margin-bottom:14px;
+.item:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--brand-bright) 55%, var(--line)); box-shadow: var(--shadow-lg); }
+.item__title { margin: 0 0 5px; font-family: var(--font-head); font-size: 16.5px; font-weight: 600; color: var(--ink); }
+.item__text { font-size: 15px; }
+.item__when { font-size: 14px; color: var(--muted); text-align: right; white-space: nowrap; padding-top: 4px; }
+
+.tag {
+    align-self: start; margin-top: 3px; padding: 5px 12px; border-radius: 999px; white-space: nowrap;
+    font-family: var(--font-head); font-size: 11.5px; font-weight: 600; letter-spacing: .08em;
 }
-.toc ol{
-  list-style:none;
-  margin:0; padding:0;
-  border-left:1px solid var(--line);
+.tag--always { color: var(--brand); background: color-mix(in srgb, var(--brand-bright) 14%, transparent); }
+.tag--deadline { color: var(--danger); background: color-mix(in srgb, var(--danger) 12%, transparent); }
+.tag--condition { color: var(--warn); background: color-mix(in srgb, var(--warn) 15%, transparent); }
+[data-theme="dark"] .tag--deadline, [data-theme="dark"] .due { color: #fca5a5; }
+[data-theme="dark"] .tag--condition { color: #fcd34d; }
+
+/* ---- ตารางกำหนดยื่นแบบ ---- */
+.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+table { width: 100%; min-width: 640px; border-collapse: collapse; font-size: 15px; }
+th, td { padding: 13px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+th {
+    font-family: var(--font-head); font-size: 12.5px; font-weight: 600; letter-spacing: .08em;
+    color: var(--muted); background: var(--bg-alt); white-space: nowrap;
 }
-.toc li{margin:0;}
-.toc a{
-  display:block;
-  padding:8px 0 8px 16px;
-  color:var(--ink-soft);
-  text-decoration:none;
-  border-left:2px solid transparent;
-  margin-left:-1px;
-  transition:color .15s ease, border-color .15s ease;
+tr:last-child td { border-bottom: none; }
+td.form-no { font-family: var(--font-head); font-weight: 600; color: var(--ink); white-space: nowrap; }
+td.due { font-family: var(--font-head); font-weight: 600; color: var(--danger); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* ---- กล่องข้อความเน้น ---- */
+.callout {
+    margin: 20px 0; padding: 16px 20px; font-size: 15px;
+    border-left: 3px solid var(--brand); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    background: color-mix(in srgb, var(--brand-bright) 10%, transparent);
 }
-.toc a:hover{color:var(--ink);}
-.toc a.active{color:var(--accent); border-left-color:var(--accent); font-weight:600;}
-.toc .num{
-  font-family:"IBM Plex Mono",monospace;
-  color:var(--gold);
-  margin-right:8px;
-  font-size:12.5px;
+.callout strong { display: block; margin-bottom: 5px; font-family: var(--font-head); font-size: 16px; font-weight: 600; color: var(--ink); }
+.callout--warn { border-left-color: var(--danger); background: color-mix(in srgb, var(--danger) 9%, transparent); }
+
+/* ---- ไทม์ไลน์ ---- */
+.timeline { display: grid; gap: 24px; margin-left: 6px; padding-left: 28px; border-left: 2px solid var(--line); }
+.tl { position: relative; }
+.tl::before {
+    content: ""; position: absolute; left: -35px; top: 7px; width: 12px; height: 12px;
+    border-radius: 50%; background: var(--bg); border: 2px solid var(--brand-bright);
+}
+.tl__day { font-family: var(--font-head); font-size: 13.5px; font-weight: 600; letter-spacing: .04em; color: var(--brand); }
+.tl__title { margin-top: 2px; font-family: var(--font-head); font-size: 16.5px; font-weight: 600; color: var(--ink); }
+.tl__desc { margin-top: 5px; max-width: 62ch; font-size: 15px; }
+
+/* ---- ปิดท้าย ---- */
+.guide__disclaimer {
+    grid-column: 1 / -1; margin-top: 8px; padding-top: 22px;
+    border-top: 1px solid var(--line); max-width: 92ch; font-size: 14px; color: var(--muted);
 }
 
-/* ---- Main content ---- */
-main{min-width:0;}
-section{
-  padding-top:8px;
-  margin-bottom:64px;
-  scroll-margin-top:24px;
+@media (max-width: 900px) {
+    .guide { grid-template-columns: 1fr; gap: 34px; }
+    .toc { position: static; }
 }
-section:first-of-type{margin-top:4px;}
-
-.section-head{
-  display:flex;
-  align-items:baseline;
-  gap:14px;
-  margin-bottom:6px;
+@media (max-width: 620px) {
+    .item { grid-template-columns: auto 1fr; }
+    .item__when { grid-column: 1 / -1; padding-top: 0; text-align: left; }
 }
-.section-num{
-  font-family:"IBM Plex Mono",monospace;
-  font-size:14px;
-  color:var(--gold);
-  font-weight:600;
+@media print {
+    .toc { display: none; }
+    .guide { grid-template-columns: 1fr; padding-top: 0; }
+    .item, .table-wrap { box-shadow: none; }
 }
-h2{
-  font-family:"Noto Serif Thai",serif;
-  font-weight:600;
-  font-size:1.55rem;
-  margin:0;
-  text-wrap:balance;
-}
-.section-intro{
-  color:var(--ink-soft);
-  max-width:68ch;
-  margin:10px 0 28px;
-}
-h3{
-  font-family:"Noto Serif Thai",serif;
-  font-weight:600;
-  font-size:1.12rem;
-  margin:28px 0 10px;
-}
-p{margin:0 0 14px; max-width:70ch;}
-.lede{font-size:1.02rem;}
-
-hr.rule{
-  border:none;
-  border-top:1px solid var(--line-soft);
-  margin:0 0 28px;
-}
-
-/* ---- Cards / checklist ---- */
-.stack{display:flex; flex-direction:column; gap:12px;}
-.item{
-  background:var(--bg-raised);
-  border:1px solid var(--line);
-  border-radius:3px;
-  padding:16px 18px;
-  display:grid;
-  grid-template-columns:auto 1fr auto;
-  gap:14px;
-  align-items:start;
-}
-.item .tag{
-  font-family:"IBM Plex Mono",monospace;
-  font-size:11px;
-  letter-spacing:.06em;
-  padding:3px 8px;
-  border-radius:999px;
-  white-space:nowrap;
-  align-self:start;
-  margin-top:2px;
-}
-.tag.deadline{background:var(--danger-soft); color:var(--danger);}
-.tag.condition{background:var(--gold-soft); color:var(--gold);}
-.tag.always{background:var(--accent-soft); color:var(--accent);}
-.item .body h4{
-  margin:0 0 4px;
-  font-size:15px;
-  font-weight:600;
-  font-family:"Noto Sans Thai",sans-serif;
-}
-.item .body p{margin:0; font-size:14.5px; color:var(--ink-soft);}
-.item .when{
-  font-family:"IBM Plex Mono",monospace;
-  font-size:12.5px;
-  color:var(--ink-soft);
-  text-align:right;
-  white-space:nowrap;
-  align-self:start;
-  padding-top:3px;
-}
-
-/* ---- Table ---- */
-.table-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:3px;}
-table{
-  border-collapse:collapse;
-  width:100%;
-  min-width:640px;
-  font-size:14.5px;
-  background:var(--bg-raised);
-}
-th,td{
-  text-align:left;
-  padding:11px 14px;
-  border-bottom:1px solid var(--line-soft);
-  vertical-align:top;
-}
-th{
-  font-family:"IBM Plex Mono",monospace;
-  font-size:11.5px;
-  letter-spacing:.06em;
-  text-transform:uppercase;
-  color:var(--ink-soft);
-  background:var(--line-soft);
-}
-tr:last-child td{border-bottom:none;}
-td.mono, th.mono{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;}
-td.due{color:var(--danger); font-family:"IBM Plex Mono",monospace; font-weight:600; white-space:nowrap;}
-
-/* ---- Callouts ---- */
-.callout{
-  border-left:3px solid var(--accent);
-  background:var(--accent-soft);
-  padding:14px 18px;
-  border-radius:0 3px 3px 0;
-  margin:18px 0;
-  font-size:14.5px;
-}
-.callout.warn{border-left-color:var(--danger); background:var(--danger-soft);}
-.callout strong{display:block; font-family:"Noto Serif Thai",serif; font-weight:600; font-size:15px; margin-bottom:4px;}
-
-/* ---- Timeline ---- */
-.timeline{
-  display:flex;
-  flex-direction:column;
-  border-left:2px solid var(--line);
-  margin-left:6px;
-  padding-left:26px;
-  gap:22px;
-}
-.tl-item{position:relative;}
-.tl-item::before{
-  content:"";
-  position:absolute;
-  left:-32px; top:4px;
-  width:11px;height:11px;
-  border-radius:50%;
-  background:var(--bg);
-  border:2px solid var(--gold);
-}
-.tl-day{
-  font-family:"IBM Plex Mono",monospace;
-  font-size:12.5px;
-  color:var(--gold);
-  font-weight:600;
-  margin-bottom:2px;
-}
-.tl-title{font-weight:600; margin-bottom:2px;}
-.tl-desc{color:var(--ink-soft); font-size:14px; margin:0; max-width:60ch;}
-
-/* ---- Footer ---- */
-footer{
-  grid-column:1/-1;
-  border-top:1px solid var(--line);
-  margin-top:16px;
-  padding-top:22px;
-  font-size:13px;
-  color:var(--ink-soft);
-  display:flex;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:10px;
-}
-
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
 </style>
+<script>
+/* ตั้งธีมก่อน render กันจอกระพริบ — ใช้ cookie ตัวเดียวกับเว็บหลัก */
+(function () {
+  try {
+    var m = document.cookie.match(/(?:^|;\s*)theme=(light|dark)/);
+    if (m) { document.documentElement.setAttribute('data-theme', m[1]); }
+    else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch (e) {}
+})();
+</script>
 </head>
 <body>
-<div class="page">
-  <div class="masthead">
-    <span class="eyebrow">คู่มือปฏิบัติ · ฉบับปรับปรุง 2569</span>
-    <h1 class="title">บัญชีและภาษี สำหรับบริษัทตั้งใหม่</h1>
-    <p class="subtitle">ลำดับหน้าที่ตามกฎหมายที่บริษัทจำกัดต้องทำหลังจดทะเบียน ตั้งแต่วันแรกจนถึงปฏิทินภาษีรายเดือนและรายปี อ้างอิงหลักเกณฑ์กรมสรรพากรและกรมพัฒนาธุรกิจการค้า</p>
-    <div class="masthead-meta">
-      <span>ใช้กับ: <b>บริษัทจำกัด</b></span>
-      <span>หน่วยงานหลัก: <b>กรมสรรพากร · กรมพัฒนาธุรกิจการค้า · ประกันสังคม</b></span>
-      <span>ปรับปรุงล่าสุด: <b>สิงหาคม 2569</b></span>
+<span id="top"></span>
+<a class="skip-link" href="#main">ข้ามไปยังเนื้อหาหลัก</a>
+
+<header class="site-header">
+    <div class="container site-header__inner">
+        <a class="site-header__brand" href="index.php#top">
+            <span class="logo">
+                <img class="logo__img logo__img--light" src="assets/img/logo-light.png"
+                     alt="TEXSON" width="414" height="102" decoding="async">
+                <img class="logo__img logo__img--dark" src="assets/img/logo-dark.png"
+                     alt="TEXSON" width="408" height="101" decoding="async">
+            </span>
+        </a>
+
+        <nav class="nav" id="primary-nav" aria-label="เมนู">
+            <a href="index.php#services">บริการ</a>
+            <a href="index.php#products">ผลิตภัณฑ์</a>
+            <a href="index.php#why">ทำไมต้องเรา</a>
+            <a href="index.php#process">ขั้นตอนทำงาน</a>
+            <a href="index.php#contact">ติดต่อเรา</a>
+            <a class="btn btn--primary nav__cta" href="index.php#contact">ขอใบเสนอราคา</a>
+        </nav>
+
+        <div class="site-header__tools">
+            <button class="icon-btn" id="theme-toggle" type="button"
+                    title="สลับโหมดสว่าง / มืด" aria-label="สลับโหมดสว่าง / มืด">
+                <svg class="icon icon--sun" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4.2" fill="none" stroke-width="1.8"/>
+                    <path d="M12 2.4v2.6M12 19v2.6M2.4 12h2.6M19 12h2.6M5.2 5.2l1.9 1.9M16.9 16.9l1.9 1.9M18.8 5.2l-1.9 1.9M7.1 16.9l-1.9 1.9"
+                          fill="none" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+                <svg class="icon icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20 14.2A8.4 8.4 0 0 1 9.8 4 8.4 8.4 0 1 0 20 14.2Z" fill="none" stroke-width="1.8" stroke-linejoin="round"/>
+                </svg>
+            </button>
+
+            <a class="btn btn--primary site-header__quote" href="index.php#contact">ขอใบเสนอราคา</a>
+
+            <button class="burger" id="nav-toggle" type="button"
+                    aria-expanded="false" aria-controls="primary-nav" aria-label="เมนู">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
     </div>
-  </div>
+</header>
 
-  <nav class="toc" id="toc">
-    <div class="toc-label">สารบัญ</div>
-    <ol>
-      <li><a href="#day-zero"><span class="num">01</span>เริ่มต้นก่อนวันแรก</a></li>
-      <li><a href="#registrations"><span class="num">02</span>การขึ้นทะเบียนตามเงื่อนไข</a></li>
-      <li><a href="#monthly"><span class="num">03</span>งานประจำเดือน</a></li>
-      <li><a href="#annual"><span class="num">04</span>งานประจำปี</a></li>
-      <li><a href="#calendar"><span class="num">05</span>ปฏิทินรอบปีแรก</a></li>
-      <li><a href="#pitfalls"><span class="num">06</span>ข้อผิดพลาดที่พบบ่อย</a></li>
-    </ol>
-  </nav>
+<main id="main">
+<div class="container guide">
 
-  <main>
+    <div class="guide__head">
+        <span class="badge">คู่มือปฏิบัติ · ฉบับปรับปรุง 2569</span>
+        <h1 class="guide__title">บัญชีและภาษี สำหรับ<span class="mark">บริษัทตั้งใหม่</span></h1>
+        <p class="guide__lead">ลำดับหน้าที่ตามกฎหมายที่บริษัทจำกัดต้องทำหลังจดทะเบียน ตั้งแต่วันแรกจนถึงปฏิทินภาษีรายเดือนและรายปี อ้างอิงหลักเกณฑ์กรมสรรพากรและกรมพัฒนาธุรกิจการค้า</p>
+        <div class="guide__meta">
+            <span>ใช้กับ: <b>บริษัทจำกัด</b></span>
+            <span>หน่วยงานหลัก: <b>กรมสรรพากร · กรมพัฒนาธุรกิจการค้า · ประกันสังคม</b></span>
+            <span>ปรับปรุงล่าสุด: <b>สิงหาคม 2569</b></span>
+        </div>
+    </div>
 
-    <section id="day-zero">
-      <div class="section-head"><span class="section-num">01</span><h2>เริ่มต้นก่อนวันแรก</h2></div>
-      <p class="section-intro lede">เมื่อจดทะเบียนบริษัทที่กรมพัฒนาธุรกิจการค้าเสร็จแล้ว ระบบจะส่งข้อมูลไปกรมสรรพากรให้อัตโนมัติและออกเลขประจำตัวผู้เสียภาษีนิติบุคคล (ใช้เลขเดียวกับเลขทะเบียน 13 หลัก) แต่ยังมีงานที่ต้องทำเองทันที</p>
-      <hr class="rule">
-      <div class="stack">
-        <div class="item">
-          <span class="tag always">บังคับ</span>
-          <div class="body">
-            <h4>เปิดบัญชีธนาคารในนามบริษัท</h4>
-            <p>ใช้แยกเงินบริษัทออกจากเงินส่วนตัวผู้ถือหุ้นอย่างเด็ดขาด เอกสารประกอบใช้หนังสือรับรองบริษัทและบัตรผู้มีอำนาจลงนาม</p>
-          </div>
-          <span class="when">ก่อนเริ่มกิจการ</span>
-        </div>
-        <div class="item">
-          <span class="tag always">บังคับ</span>
-          <div class="body">
-            <h4>วางระบบบัญชีตามมาตรฐาน TFRS</h4>
-            <p>กำหนดผังบัญชี รอบระยะเวลาบัญชี (ปกติ 12 เดือน) และวิธีเก็บเอกสารประกอบการลงบัญชี</p>
-          </div>
-          <span class="when">ก่อนเริ่มกิจการ</span>
-        </div>
-        <div class="item">
-          <span class="tag always">บังคับ</span>
-          <div class="body">
-            <h4>แต่งตั้งผู้ทำบัญชี</h4>
-            <p>ต้องมีคุณวุฒิปริญญาตรี/ปวส. ทางบัญชีและขึ้นทะเบียนกับกรมพัฒน์ฯ หากไม่มีพนักงานบัญชีในองค์กร นิยมจ้างสำนักงานบัญชีทำแทน</p>
-          </div>
-          <span class="when">ภายใน 15 วัน</span>
-        </div>
-      </div>
-    </section>
+    <nav class="toc" id="toc" aria-label="สารบัญ">
+        <div class="toc__label">สารบัญ</div>
+        <ol>
+            <li><a href="#day-zero"><span class="toc__num">01</span>เริ่มต้นก่อนวันแรก</a></li>
+            <li><a href="#registrations"><span class="toc__num">02</span>การขึ้นทะเบียนตามเงื่อนไข</a></li>
+            <li><a href="#monthly"><span class="toc__num">03</span>งานประจำเดือน</a></li>
+            <li><a href="#annual"><span class="toc__num">04</span>งานประจำปี</a></li>
+            <li><a href="#calendar"><span class="toc__num">05</span>ปฏิทินรอบปีแรก</a></li>
+            <li><a href="#pitfalls"><span class="toc__num">06</span>ข้อผิดพลาดที่พบบ่อย</a></li>
+        </ol>
+    </nav>
 
-    <section id="registrations">
-      <div class="section-head"><span class="section-num">02</span><h2>การขึ้นทะเบียนตามเงื่อนไข</h2></div>
-      <p class="section-intro lede">สองรายการนี้ไม่ได้บังคับทุกบริษัท แต่ถ้าเข้าเงื่อนไขแล้วไม่ทำภายในกำหนด จะมีเบี้ยปรับและเงินเพิ่มตามมา</p>
-      <hr class="rule">
-      <div class="stack">
-        <div class="item">
-          <span class="tag deadline">30 วัน</span>
-          <div class="body">
-            <h4>จดทะเบียนภาษีมูลค่าเพิ่ม (VAT)</h4>
-            <p>บังคับเมื่อรายได้เกิน 1.8 ล้านบาทต่อปี ยื่นแบบ ภ.พ.01 เพื่อขอใบ ภ.พ.20 นับ 30 วันจากวันที่รายได้เกินเกณฑ์ หรือก่อนเริ่มกิจการถ้ารู้ล่วงหน้าว่าจะเกิน ต่ำกว่าเกณฑ์จดโดยสมัครใจได้เพื่อออกใบกำกับภาษี</p>
-          </div>
-          <span class="when">นับจากเกินเกณฑ์</span>
-        </div>
-        <div class="item">
-          <span class="tag deadline">30 วัน</span>
-          <div class="body">
-            <h4>ขึ้นทะเบียนนายจ้างกับประกันสังคม</h4>
-            <p>บังคับทันทีที่มีการจ้างพนักงานคนแรก (แม้เพียง 1 คน) ยื่นแบบขึ้นทะเบียนต่อสำนักงานประกันสังคมในพื้นที่</p>
-          </div>
-          <span class="when">นับจากจ้างคนแรก</span>
-        </div>
-      </div>
-      <div class="callout">
-        <strong>ไม่มีพนักงานหรือรายได้ยังไม่ถึงเกณฑ์?</strong>
-        ยังต้องยื่นภาษีเงินได้นิติบุคคลและงบการเงินประจำปีตามปกติ แม้จะเป็น "งบเปล่า" ก็ต้องยื่นตรงเวลา
-      </div>
-    </section>
+    <div class="guide__main">
 
-    <section id="monthly">
-      <div class="section-head"><span class="section-num">03</span><h2>งานประจำเดือน</h2></div>
-      <p class="section-intro lede">ใช้เมื่อจด VAT แล้ว และ/หรือมีการจ่ายเงินที่ต้องหักภาษี ณ ที่จ่าย หรือมีพนักงาน กำหนดวันยื่นแบบกระดาษจะเร็วกว่ายื่นออนไลน์เสมอ</p>
-      <hr class="rule">
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr><th>แบบ</th><th>ใช้เมื่อ</th><th class="mono">ยื่นกระดาษ</th><th class="mono">ยื่นออนไลน์</th></tr>
-          </thead>
-          <tbody>
-            <tr><td class="mono">ภ.พ.30</td><td>ยื่น VAT รายเดือน (เฉพาะบริษัทที่จด VAT)</td><td class="due">ภายในวันที่ 15</td><td class="due">ภายในวันที่ 23</td></tr>
-            <tr><td class="mono">ภ.ง.ด.1</td><td>หัก ณ ที่จ่ายเงินเดือนพนักงาน</td><td class="due">ภายในวันที่ 7</td><td class="due">ภายในวันที่ 15</td></tr>
-            <tr><td class="mono">ภ.ง.ด.3</td><td>หัก ณ ที่จ่ายเมื่อจ่ายให้บุคคลธรรมดา</td><td class="due">ภายในวันที่ 7</td><td class="due">ภายในวันที่ 15</td></tr>
-            <tr><td class="mono">ภ.ง.ด.53</td><td>หัก ณ ที่จ่ายเมื่อจ่ายให้นิติบุคคล</td><td class="due">ภายในวันที่ 7</td><td class="due">ภายในวันที่ 15</td></tr>
-            <tr><td class="mono">เงินสมทบ สปส.</td><td>นำส่งเงินสมทบประกันสังคม (นายจ้าง+ลูกจ้าง)</td><td class="due">ภายในวันที่ 15</td><td class="due">ภายในวันที่ 15</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+        <section class="guide__section" id="day-zero">
+            <div class="guide__section-head"><span class="guide__section-num">01</span><h2>เริ่มต้นก่อนวันแรก</h2></div>
+            <p class="guide__intro">เมื่อจดทะเบียนบริษัทที่กรมพัฒนาธุรกิจการค้าเสร็จแล้ว ระบบจะส่งข้อมูลไปกรมสรรพากรให้อัตโนมัติและออกเลขประจำตัวผู้เสียภาษีนิติบุคคล (ใช้เลขเดียวกับเลขทะเบียน 13 หลัก) แต่ยังมีงานที่ต้องทำเองทันที</p>
+            <hr class="rule">
+            <div class="stack">
+                <div class="item">
+                    <span class="tag tag--always">บังคับ</span>
+                    <div>
+                        <h3 class="item__title">เปิดบัญชีธนาคารในนามบริษัท</h3>
+                        <p class="item__text">ใช้แยกเงินบริษัทออกจากเงินส่วนตัวผู้ถือหุ้นอย่างเด็ดขาด เอกสารประกอบใช้หนังสือรับรองบริษัทและบัตรผู้มีอำนาจลงนาม</p>
+                    </div>
+                    <span class="item__when">ก่อนเริ่มกิจการ</span>
+                </div>
+                <div class="item">
+                    <span class="tag tag--always">บังคับ</span>
+                    <div>
+                        <h3 class="item__title">วางระบบบัญชีตามมาตรฐาน TFRS</h3>
+                        <p class="item__text">กำหนดผังบัญชี รอบระยะเวลาบัญชี (ปกติ 12 เดือน) และวิธีเก็บเอกสารประกอบการลงบัญชี</p>
+                    </div>
+                    <span class="item__when">ก่อนเริ่มกิจการ</span>
+                </div>
+                <div class="item">
+                    <span class="tag tag--always">บังคับ</span>
+                    <div>
+                        <h3 class="item__title">แต่งตั้งผู้ทำบัญชี</h3>
+                        <p class="item__text">ต้องมีคุณวุฒิปริญญาตรี/ปวส. ทางบัญชีและขึ้นทะเบียนกับกรมพัฒน์ฯ หากไม่มีพนักงานบัญชีในองค์กร นิยมจ้างสำนักงานบัญชีทำแทน</p>
+                    </div>
+                    <span class="item__when">ภายใน 15 วัน</span>
+                </div>
+            </div>
+        </section>
 
-    <section id="annual">
-      <div class="section-head"><span class="section-num">04</span><h2>งานประจำปี</h2></div>
-      <p class="section-intro lede">นับจากวันสิ้นรอบระยะเวลาบัญชี (ปกติ 31 ธันวาคม ถ้าไม่ได้กำหนดรอบบัญชีเป็นอย่างอื่น)</p>
-      <hr class="rule">
-      <div class="stack">
-        <div class="item">
-          <span class="tag deadline">2 เดือน</span>
-          <div class="body">
-            <h4>ยื่น ภ.ง.ด.51 — ภาษีเงินได้นิติบุคคลครึ่งปี</h4>
-            <p>ประมาณการกำไรสุทธิครึ่งปีหลังและชำระภาษีล่วงหน้าครึ่งหนึ่ง</p>
-          </div>
-          <span class="when">นับจากสิ้นครึ่งปีบัญชี</span>
-        </div>
-        <div class="item">
-          <span class="tag always">บังคับ</span>
-          <div class="body">
-            <h4>จัดทำงบการเงินประจำปีและตรวจสอบโดยผู้สอบบัญชี</h4>
-            <p>ต้องผ่านการตรวจสอบและรับรองโดยผู้สอบบัญชีรับอนุญาต (CPA) ก่อนนำส่ง แม้บริษัทจะยังไม่มีรายได้</p>
-          </div>
-          <span class="when">ก่อนนำส่ง</span>
-        </div>
-        <div class="item">
-          <span class="tag deadline">150 วัน</span>
-          <div class="body">
-            <h4>ยื่น ภ.ง.ด.50 และนำส่งงบการเงิน</h4>
-            <p>ยื่นภาษีเงินได้นิติบุคคลประจำปีต่อกรมสรรพากร และนำส่งงบการเงินที่ตรวจสอบแล้วต่อกรมพัฒน์ฯ ผ่านระบบ DBD e-Filing</p>
-          </div>
-          <span class="when">นับจากสิ้นรอบบัญชี</span>
-        </div>
-      </div>
-    </section>
+        <section class="guide__section" id="registrations">
+            <div class="guide__section-head"><span class="guide__section-num">02</span><h2>การขึ้นทะเบียนตามเงื่อนไข</h2></div>
+            <p class="guide__intro">สองรายการนี้ไม่ได้บังคับทุกบริษัท แต่ถ้าเข้าเงื่อนไขแล้วไม่ทำภายในกำหนด จะมีเบี้ยปรับและเงินเพิ่มตามมา</p>
+            <hr class="rule">
+            <div class="stack">
+                <div class="item">
+                    <span class="tag tag--deadline">30 วัน</span>
+                    <div>
+                        <h3 class="item__title">จดทะเบียนภาษีมูลค่าเพิ่ม (VAT)</h3>
+                        <p class="item__text">บังคับเมื่อรายได้เกิน 1.8 ล้านบาทต่อปี ยื่นแบบ ภ.พ.01 เพื่อขอใบ ภ.พ.20 นับ 30 วันจากวันที่รายได้เกินเกณฑ์ หรือก่อนเริ่มกิจการถ้ารู้ล่วงหน้าว่าจะเกิน ต่ำกว่าเกณฑ์จดโดยสมัครใจได้เพื่อออกใบกำกับภาษี</p>
+                    </div>
+                    <span class="item__when">นับจากเกินเกณฑ์</span>
+                </div>
+                <div class="item">
+                    <span class="tag tag--deadline">30 วัน</span>
+                    <div>
+                        <h3 class="item__title">ขึ้นทะเบียนนายจ้างกับประกันสังคม</h3>
+                        <p class="item__text">บังคับทันทีที่มีการจ้างพนักงานคนแรก (แม้เพียง 1 คน) ยื่นแบบขึ้นทะเบียนต่อสำนักงานประกันสังคมในพื้นที่</p>
+                    </div>
+                    <span class="item__when">นับจากจ้างคนแรก</span>
+                </div>
+            </div>
+            <div class="callout">
+                <strong>ไม่มีพนักงานหรือรายได้ยังไม่ถึงเกณฑ์?</strong>
+                ยังต้องยื่นภาษีเงินได้นิติบุคคลและงบการเงินประจำปีตามปกติ แม้จะเป็น "งบเปล่า" ก็ต้องยื่นตรงเวลา
+            </div>
+        </section>
 
-    <section id="calendar">
-      <div class="section-head"><span class="section-num">05</span><h2>ปฏิทินรอบปีแรก</h2></div>
-      <p class="section-intro lede">ตัวอย่างเมื่อรอบบัญชีปิด 31 ธันวาคม สำหรับบริษัทที่มีพนักงานและจด VAT แล้ว</p>
-      <hr class="rule">
-      <div class="timeline">
-        <div class="tl-item">
-          <div class="tl-day">วันจดทะเบียน</div>
-          <div class="tl-title">เปิดบัญชีธนาคาร + วางระบบบัญชี</div>
-          <p class="tl-desc">แต่งตั้งผู้ทำบัญชี เตรียมเอกสารประกอบการลงบัญชีตั้งแต่ธุรกรรมแรก</p>
-        </div>
-        <div class="tl-item">
-          <div class="tl-day">ทุกเดือน</div>
-          <div class="tl-title">ยื่น ภ.พ.30 / ภ.ง.ด.1,3,53 / เงินสมทบ สปส.</div>
-          <p class="tl-desc">วนซ้ำทุกเดือนตลอดปี ตามเงื่อนไขที่เข้าเกณฑ์</p>
-        </div>
-        <div class="tl-item">
-          <div class="tl-day">ปลายสิงหาคม</div>
-          <div class="tl-title">ยื่น ภ.ง.ด.51 (ภาษีครึ่งปี)</div>
-          <p class="tl-desc">2 เดือนหลังสิ้นครึ่งปีบัญชี (30 มิถุนายน)</p>
-        </div>
-        <div class="tl-item">
-          <div class="tl-day">มกราคม–เมษายน ปีถัดไป</div>
-          <div class="tl-title">ปิดงบ + ผู้สอบบัญชีตรวจสอบ</div>
-          <p class="tl-desc">เริ่มปิดบัญชีทันทีหลังสิ้นปี เผื่อเวลาให้ผู้สอบบัญชีทำงาน</p>
-        </div>
-        <div class="tl-item">
-          <div class="tl-day">ปลายพฤษภาคม</div>
-          <div class="tl-title">ยื่น ภ.ง.ด.50 + นำส่งงบการเงิน</div>
-          <p class="tl-desc">150 วันหลังสิ้นรอบบัญชี 31 ธันวาคม — เส้นตายสำคัญที่สุดของปี</p>
-        </div>
-      </div>
-    </section>
+        <section class="guide__section" id="monthly">
+            <div class="guide__section-head"><span class="guide__section-num">03</span><h2>งานประจำเดือน</h2></div>
+            <p class="guide__intro">ใช้เมื่อจด VAT แล้ว และ/หรือมีการจ่ายเงินที่ต้องหักภาษี ณ ที่จ่าย หรือมีพนักงาน กำหนดวันยื่นแบบกระดาษจะเร็วกว่ายื่นออนไลน์เสมอ</p>
+            <hr class="rule">
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>แบบ</th><th>ใช้เมื่อ</th><th>ยื่นกระดาษ</th><th>ยื่นออนไลน์</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="form-no">ภ.พ.30</td><td>ยื่น VAT รายเดือน (เฉพาะบริษัทที่จด VAT)</td><td class="due">ภายในวันที่ 15</td><td class="due">ภายในวันที่ 23</td></tr>
+                        <tr><td class="form-no">ภ.ง.ด.1</td><td>หัก ณ ที่จ่ายเงินเดือนพนักงาน</td><td class="due">ภายในวันที่ 7</td><td class="due">ภายในวันที่ 15</td></tr>
+                        <tr><td class="form-no">ภ.ง.ด.3</td><td>หัก ณ ที่จ่ายเมื่อจ่ายให้บุคคลธรรมดา</td><td class="due">ภายในวันที่ 7</td><td class="due">ภายในวันที่ 15</td></tr>
+                        <tr><td class="form-no">ภ.ง.ด.53</td><td>หัก ณ ที่จ่ายเมื่อจ่ายให้นิติบุคคล</td><td class="due">ภายในวันที่ 7</td><td class="due">ภายในวันที่ 15</td></tr>
+                        <tr><td class="form-no">เงินสมทบ สปส.</td><td>นำส่งเงินสมทบประกันสังคม (นายจ้าง+ลูกจ้าง)</td><td class="due">ภายในวันที่ 15</td><td class="due">ภายในวันที่ 15</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
-    <section id="pitfalls">
-      <div class="section-head"><span class="section-num">06</span><h2>ข้อผิดพลาดที่พบบ่อย</h2></div>
-      <hr class="rule">
-      <div class="callout warn">
-        <strong>ไม่มีรายได้ก็ยังต้องยื่นแบบ</strong>
-        บริษัทที่ยังไม่มีรายได้ในปีแรกต้องยื่น ภ.ง.ด.50 และงบการเงิน "งบเปล่า" ตรงเวลาเช่นกัน ไม่ยื่นถือว่าผิด มีค่าปรับ
-      </div>
-      <div class="callout warn">
-        <strong>ยื่นช้ามีทั้งเบี้ยปรับและเงินเพิ่ม</strong>
-        ทั้งการยื่น VAT และภาษีหัก ณ ที่จ่ายที่ล่าช้า มีทั้งเบี้ยปรับตามกฎหมายและเงินเพิ่มคิดเป็นรายเดือน ควรตั้งปฏิทินเตือนล่วงหน้าอย่างน้อย 5 วันก่อนกำหนด
-      </div>
-      <div class="callout">
-        <strong>เก็บเอกสารอย่างน้อย 5 ปี</strong>
-        ใบกำกับภาษี ใบเสร็จ สัญญา และเอกสารประกอบบัญชีทั้งหมดต้องเก็บรักษาไว้ไม่น้อยกว่า 5 ปีตามกฎหมาย
-      </div>
-    </section>
+        <section class="guide__section" id="annual">
+            <div class="guide__section-head"><span class="guide__section-num">04</span><h2>งานประจำปี</h2></div>
+            <p class="guide__intro">นับจากวันสิ้นรอบระยะเวลาบัญชี (ปกติ 31 ธันวาคม ถ้าไม่ได้กำหนดรอบบัญชีเป็นอย่างอื่น)</p>
+            <hr class="rule">
+            <div class="stack">
+                <div class="item">
+                    <span class="tag tag--deadline">2 เดือน</span>
+                    <div>
+                        <h3 class="item__title">ยื่น ภ.ง.ด.51 — ภาษีเงินได้นิติบุคคลครึ่งปี</h3>
+                        <p class="item__text">ประมาณการกำไรสุทธิครึ่งปีหลังและชำระภาษีล่วงหน้าครึ่งหนึ่ง</p>
+                    </div>
+                    <span class="item__when">นับจากสิ้นครึ่งปีบัญชี</span>
+                </div>
+                <div class="item">
+                    <span class="tag tag--always">บังคับ</span>
+                    <div>
+                        <h3 class="item__title">จัดทำงบการเงินประจำปีและตรวจสอบโดยผู้สอบบัญชี</h3>
+                        <p class="item__text">ต้องผ่านการตรวจสอบและรับรองโดยผู้สอบบัญชีรับอนุญาต (CPA) ก่อนนำส่ง แม้บริษัทจะยังไม่มีรายได้</p>
+                    </div>
+                    <span class="item__when">ก่อนนำส่ง</span>
+                </div>
+                <div class="item">
+                    <span class="tag tag--deadline">150 วัน</span>
+                    <div>
+                        <h3 class="item__title">ยื่น ภ.ง.ด.50 และนำส่งงบการเงิน</h3>
+                        <p class="item__text">ยื่นภาษีเงินได้นิติบุคคลประจำปีต่อกรมสรรพากร และนำส่งงบการเงินที่ตรวจสอบแล้วต่อกรมพัฒน์ฯ ผ่านระบบ DBD e-Filing</p>
+                    </div>
+                    <span class="item__when">นับจากสิ้นรอบบัญชี</span>
+                </div>
+            </div>
+        </section>
 
-  </main>
+        <section class="guide__section" id="calendar">
+            <div class="guide__section-head"><span class="guide__section-num">05</span><h2>ปฏิทินรอบปีแรก</h2></div>
+            <p class="guide__intro">ตัวอย่างเมื่อรอบบัญชีปิด 31 ธันวาคม สำหรับบริษัทที่มีพนักงานและจด VAT แล้ว</p>
+            <hr class="rule">
+            <div class="timeline">
+                <div class="tl">
+                    <div class="tl__day">วันจดทะเบียน</div>
+                    <div class="tl__title">เปิดบัญชีธนาคาร + วางระบบบัญชี</div>
+                    <p class="tl__desc">แต่งตั้งผู้ทำบัญชี เตรียมเอกสารประกอบการลงบัญชีตั้งแต่ธุรกรรมแรก</p>
+                </div>
+                <div class="tl">
+                    <div class="tl__day">ทุกเดือน</div>
+                    <div class="tl__title">ยื่น ภ.พ.30 / ภ.ง.ด.1,3,53 / เงินสมทบ สปส.</div>
+                    <p class="tl__desc">วนซ้ำทุกเดือนตลอดปี ตามเงื่อนไขที่เข้าเกณฑ์</p>
+                </div>
+                <div class="tl">
+                    <div class="tl__day">ปลายสิงหาคม</div>
+                    <div class="tl__title">ยื่น ภ.ง.ด.51 (ภาษีครึ่งปี)</div>
+                    <p class="tl__desc">2 เดือนหลังสิ้นครึ่งปีบัญชี (30 มิถุนายน)</p>
+                </div>
+                <div class="tl">
+                    <div class="tl__day">มกราคม–เมษายน ปีถัดไป</div>
+                    <div class="tl__title">ปิดงบ + ผู้สอบบัญชีตรวจสอบ</div>
+                    <p class="tl__desc">เริ่มปิดบัญชีทันทีหลังสิ้นปี เผื่อเวลาให้ผู้สอบบัญชีทำงาน</p>
+                </div>
+                <div class="tl">
+                    <div class="tl__day">ปลายพฤษภาคม</div>
+                    <div class="tl__title">ยื่น ภ.ง.ด.50 + นำส่งงบการเงิน</div>
+                    <p class="tl__desc">150 วันหลังสิ้นรอบบัญชี 31 ธันวาคม — เส้นตายสำคัญที่สุดของปี</p>
+                </div>
+            </div>
+        </section>
 
-  <footer>
-    <span>คู่มือฉบับนี้เป็นแนวทางทั่วไปสำหรับบริษัทจำกัด ไม่ใช่คำแนะนำทางกฎหมายหรือภาษีเฉพาะราย ควรตรวจสอบกับผู้สอบบัญชีหรือสำนักงานบัญชีก่อนดำเนินการจริง</span>
-  </footer>
+        <section class="guide__section" id="pitfalls">
+            <div class="guide__section-head"><span class="guide__section-num">06</span><h2>ข้อผิดพลาดที่พบบ่อย</h2></div>
+            <hr class="rule">
+            <div class="callout callout--warn">
+                <strong>ไม่มีรายได้ก็ยังต้องยื่นแบบ</strong>
+                บริษัทที่ยังไม่มีรายได้ในปีแรกต้องยื่น ภ.ง.ด.50 และงบการเงิน "งบเปล่า" ตรงเวลาเช่นกัน ไม่ยื่นถือว่าผิด มีค่าปรับ
+            </div>
+            <div class="callout callout--warn">
+                <strong>ยื่นช้ามีทั้งเบี้ยปรับและเงินเพิ่ม</strong>
+                ทั้งการยื่น VAT และภาษีหัก ณ ที่จ่ายที่ล่าช้า มีทั้งเบี้ยปรับตามกฎหมายและเงินเพิ่มคิดเป็นรายเดือน ควรตั้งปฏิทินเตือนล่วงหน้าอย่างน้อย 5 วันก่อนกำหนด
+            </div>
+            <div class="callout">
+                <strong>เก็บเอกสารอย่างน้อย 5 ปี</strong>
+                ใบกำกับภาษี ใบเสร็จ สัญญา และเอกสารประกอบบัญชีทั้งหมดต้องเก็บรักษาไว้ไม่น้อยกว่า 5 ปีตามกฎหมาย
+            </div>
+        </section>
+
+    </div>
+
+    <p class="guide__disclaimer">คู่มือฉบับนี้เป็นแนวทางทั่วไปสำหรับบริษัทจำกัด ไม่ใช่คำแนะนำทางกฎหมายหรือภาษีเฉพาะราย ควรตรวจสอบกับผู้สอบบัญชีหรือสำนักงานบัญชีก่อนดำเนินการจริง</p>
+
 </div>
+</main>
+
+<footer class="site-footer">
+    <div class="container site-footer__grid">
+        <div class="site-footer__brand">
+            <span class="logo">
+                <img class="logo__img logo__img--light" src="assets/img/logo-light.png"
+                     alt="TEXSON" width="414" height="102" decoding="async">
+                <img class="logo__img logo__img--dark" src="assets/img/logo-dark.png"
+                     alt="TEXSON" width="408" height="101" decoding="async">
+            </span>
+            <p class="site-footer__tagline">ที่ปรึกษาห้อง Server และ Critical Environment ดูแลตั้งแต่ตรวจประเมิน วางแผน PM ไปจนถึงอบรมทีมของคุณ</p>
+        </div>
+
+        <nav class="site-footer__nav" aria-label="เมนู">
+            <h3 class="site-footer__title">เมนู</h3>
+            <a href="index.php#services">บริการ</a>
+            <a href="index.php#products">ผลิตภัณฑ์</a>
+            <a href="index.php#why">ทำไมต้องเรา</a>
+            <a href="index.php#process">ขั้นตอนทำงาน</a>
+            <a href="index.php#contact">ติดต่อเรา</a>
+        </nav>
+
+        <div class="site-footer__contact">
+            <h3 class="site-footer__title">ติดต่อเรา</h3>
+            <a href="tel:+66999898888">099-989-8888</a>
+            <a href="mailto:support@texson.co.th">support@texson.co.th</a>
+            <span>จันทร์–ศุกร์ 08:30–17:30 น.</span>
+        </div>
+    </div>
+
+    <div class="container site-footer__bottom">
+        <p>© <span id="year">2026</span> Texson — ที่ปรึกษา Data Center Facility · Audit · PM Planning · Training</p>
+        <a class="site-footer__top" href="#top">กลับขึ้นด้านบน <span aria-hidden="true">&uarr;</span></a>
+    </div>
+</footer>
 
 <script>
-(function(){
-  try{
-    var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
-    var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
-    function onScroll(){
-      var pos = window.scrollY + 120;
-      var activeIdx = 0;
-      sections.forEach(function(sec, i){
-        if(sec && sec.offsetTop <= pos) activeIdx = i;
-      });
-      links.forEach(function(a,i){ a.classList.toggle('active', i===activeIdx); });
+(function () {
+    'use strict';
+
+    var doc = document.documentElement;
+
+    /* ---- สลับธีม + จำด้วย cookie ตัวเดียวกับเว็บหลัก ---- */
+    var themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function () {
+            var next = doc.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            doc.setAttribute('data-theme', next);
+            document.cookie = 'theme=' + next + ';path=/;max-age=31536000;samesite=lax';
+        });
     }
-    document.addEventListener('scroll', onScroll, {passive:true});
+
+    /* ---- เมนูมือถือ ---- */
+    var burger = document.getElementById('nav-toggle');
+    var nav = document.getElementById('primary-nav');
+    if (burger && nav) {
+        var closeNav = function () {
+            nav.classList.remove('is-open');
+            burger.setAttribute('aria-expanded', 'false');
+        };
+        burger.addEventListener('click', function () {
+            var open = nav.classList.toggle('is-open');
+            burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        nav.addEventListener('click', function (event) {
+            if (event.target.tagName === 'A') { closeNav(); }
+        });
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') { closeNav(); }
+        });
+    }
+
+    /* ---- เงาใต้ header เมื่อเลื่อนลง ---- */
+    var header = document.querySelector('.site-header');
+
+    /* ---- ไฮไลต์หัวข้อในสารบัญตามตำแหน่งที่อ่านอยู่ ---- */
+    var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+    var sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+
+    var onScroll = function () {
+        if (header) { header.classList.toggle('is-stuck', window.scrollY > 8); }
+
+        var pos = window.scrollY + 140;
+        var activeIdx = 0;
+        sections.forEach(function (sec, i) {
+            if (sec && sec.offsetTop <= pos) { activeIdx = i; }
+        });
+        links.forEach(function (a, i) { a.classList.toggle('is-active', i === activeIdx); });
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
-  }catch(e){}
+
+    var year = document.getElementById('year');
+    if (year) { year.textContent = String(new Date().getFullYear()); }
 })();
 </script>
 </body>
