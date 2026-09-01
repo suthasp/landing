@@ -22,6 +22,9 @@ $config = [
         'line_id'    => '@texson',
     ],
 
+    // ระบบอีเมลของบริษัท (Roundcube บนโฮสต์) — เว้นว่างไว้ถ้าไม่ต้องการแสดงลิงก์
+    'webmail_url'  => 'https://texson.co.th/roundcube/',
+
     // การส่งอีเมลแจ้งเตือนเมื่อมีคนกรอกฟอร์ม
     'mail' => [
         'enabled'   => false,                    // true = ส่งอีเมล (ตั้งค่า SMTP ให้ครบก่อน)

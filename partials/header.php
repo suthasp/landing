@@ -12,9 +12,25 @@
             <a href="#process"><?= te('nav.process') ?></a>
             <a href="#contact"><?= te('nav.contact') ?></a>
             <a class="btn btn--primary nav__cta" href="#contact"><?= te('nav.quote') ?></a>
+            <?php if (cfg('webmail_url')): ?>
+                <a class="nav__mail" href="<?= e((string)cfg('webmail_url')) ?>" target="_blank" rel="noopener">
+                    <?= te('nav.webmail') ?>
+                </a>
+            <?php endif; ?>
         </nav>
 
         <div class="site-header__tools">
+            <?php if (cfg('webmail_url')): ?>
+                <a class="icon-btn site-header__mail" href="<?= e((string)cfg('webmail_url')) ?>"
+                   target="_blank" rel="noopener"
+                   title="<?= te('nav.webmail') ?>" aria-label="<?= te('nav.webmail') ?>">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke-width="1.8"/>
+                        <path d="M3.7 6.8 12 12.7l8.3-5.9" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            <?php endif; ?>
+
             <a class="icon-btn" href="<?= e(url_with(['lang' => other_lang()])) ?>"
                title="<?= te('nav.lang') ?>" aria-label="<?= te('nav.lang') ?>">
                 <?= strtoupper(other_lang()) ?>

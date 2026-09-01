@@ -18,6 +18,7 @@ return [
         'menu'     => 'เมนู',
         'theme'    => 'สลับโหมดสว่าง / มืด',
         'lang'     => 'Switch to English',
+        'webmail'  => 'เข้าสู่ระบบอีเมล',
     ],
 
     'hero' => [

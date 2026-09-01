@@ -20,6 +20,9 @@
             <a href="tel:<?= e((string)cfg('contact.phone_tel')) ?>"><?= e((string)cfg('contact.phone')) ?></a>
             <a href="mailto:<?= e((string)cfg('contact.email')) ?>"><?= e((string)cfg('contact.email')) ?></a>
             <span><?= te('contact.hours') ?></span>
+            <?php if (cfg('webmail_url')): ?>
+                <a href="<?= e((string)cfg('webmail_url')) ?>" target="_blank" rel="noopener"><?= te('nav.webmail') ?> &nearr;</a>
+            <?php endif; ?>
         </div>
     </div>
 

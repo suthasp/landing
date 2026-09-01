@@ -18,6 +18,7 @@ return [
         'menu'     => 'Menu',
         'theme'    => 'Toggle light / dark mode',
         'lang'     => 'เปลี่ยนเป็นภาษาไทย',
+        'webmail'  => 'Webmail Login',
     ],
 
     'hero' => [

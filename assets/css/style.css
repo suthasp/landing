@@ -143,6 +143,8 @@ svg { stroke: currentColor; }
 .nav > a:hover { color: var(--brand); }
 .nav > a:hover::after { right: 0; }
 .nav__cta { display: none; }
+/* ลิงก์เว็บเมลในเมนูมือถือ — จอเล็กซ่อนปุ่มไอคอนบนแถบเครื่องมือแล้วใช้ลิงก์นี้แทน */
+.nav__mail { display: none; }
 
 .icon-btn {
     display: inline-flex; align-items: center; justify-content: center;
@@ -366,6 +368,8 @@ svg { stroke: currentColor; }
 
 @media (max-width: 620px) {
     body { font-size: 16px; }
+    .site-header__mail { display: none; }
+    .nav__mail { display: inline-flex; }
     .grid--4, .steps { grid-template-columns: 1fr; }
     .stats { grid-template-columns: 1fr; gap: 18px; margin-top: 40px; }
     .hero__actions .btn { width: 100%; }
