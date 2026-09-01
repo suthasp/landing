@@ -3,7 +3,7 @@
    1. Tokens & reset      5. Sections & cards
    2. Layout helpers      6. Contact & form
    3. Buttons & header    7. Footer
-   4. Hero                8. Motion & responsive
+   4. Intro & hero        8. Motion & responsive
    ========================================================================== */
 
 /* 1. Tokens & reset ------------------------------------------------------- */
@@ -166,7 +166,47 @@ svg { stroke: currentColor; }
 .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* 4. Hero ----------------------------------------------------------------- */
+/* 4. Intro (อินโทรหน้าแรก) ------------------------------------------------ */
+/* ตัวอักษรแบรนด์เป็น "ช่องเจาะ" บนแผ่นดำ เลื่อนลงแล้วช่องจะขยายจนเห็นภาพเต็มจอ
+   ซ่อนไว้ก่อนเสมอ แสดงเฉพาะเมื่อเปิด JS (คลาส .js บน <html>) */
+.intro { display: none; }
+.js .intro { display: block; position: relative; height: 300vh; height: 300svh; background: #000; }
+
+.intro__stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: #000; }
+
+.intro__media {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center; background-repeat: no-repeat;
+    transform: scale(1.12); transform-origin: center; will-change: transform;
+}
+/* ใช้เมื่อยังไม่ได้ใส่ไฟล์ assets/img/intro-bg.jpg */
+.intro__media--fallback {
+    background-image:
+        radial-gradient(ellipse 62% 46% at 50% 52%, rgba(56, 211, 238, .32) 0%, rgba(20, 62, 92, .12) 46%, transparent 74%),
+        repeating-linear-gradient(90deg, rgba(41, 197, 224, .10) 0 2px, transparent 2px 28px),
+        linear-gradient(180deg, #060d16 0%, #0a1626 55%, #04080f 100%);
+}
+
+.intro__mask { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.intro__mask, .intro__mask * { stroke: none; }
+#intro-text { font-family: "Poppins", var(--font-head); font-weight: 700; letter-spacing: .02em; }
+#intro-cover { transition: opacity .15s linear; }
+
+.intro__hint {
+    position: absolute; left: 50%; bottom: 34px; z-index: 2; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    font-family: var(--font-head); font-size: 12px; font-weight: 500; letter-spacing: .22em;
+    color: rgba(255, 255, 255, .74); text-align: center; text-transform: uppercase;
+    transition: opacity .3s ease;
+}
+.intro__hint svg { width: 20px; height: 20px; fill: none; animation: intro-bob 1.9s ease-in-out infinite; }
+@keyframes intro-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+
+/* header โผล่หลังอินโทรจบ (อินโทรกับ header เป็นพี่น้องกันใน <body>) */
+.js .intro ~ .site-header { opacity: 0; pointer-events: none; transition: opacity .35s ease; }
+body.intro-done .intro ~ .site-header { opacity: 1; pointer-events: auto; }
+
+/* 5. Hero ----------------------------------------------------------------- */
 .hero { position: relative; padding: clamp(52px, 7vw, 96px) 0 clamp(56px, 7vw, 100px); overflow: hidden; }
 .hero__glow {
     position: absolute; inset: -30% -10% auto auto; width: 720px; height: 720px; pointer-events: none;
@@ -219,7 +259,7 @@ svg { stroke: currentColor; }
     100% { box-shadow: 0 0 0 0 transparent; }
 }
 
-/* 5. Sections & cards ----------------------------------------------------- */
+/* 6. Sections & cards ----------------------------------------------------- */
 .card {
     position: relative; display: flex; flex-direction: column; height: 100%;
     padding: 28px 26px; background: var(--surface); border: 1px solid var(--line);
@@ -267,7 +307,7 @@ svg { stroke: currentColor; }
 .step__title { margin-top: 8px; font-size: 18px; font-weight: 600; }
 .step__text { margin-top: 10px; font-size: 15px; }
 
-/* 6. Contact & form ------------------------------------------------------- */
+/* 7. Contact & form ------------------------------------------------------- */
 .contact { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 64px); align-items: start; }
 .contact__list { display: grid; gap: 22px; margin-top: 34px; }
 .contact__list li { display: flex; align-items: flex-start; gap: 14px; }
@@ -318,7 +358,7 @@ svg { stroke: currentColor; }
 [data-theme="dark"] .alert--success { color: #6ee7a8; }
 [data-theme="dark"] .alert--error { color: #fca5a5; }
 
-/* 7. Footer --------------------------------------------------------------- */
+/* 8. Footer --------------------------------------------------------------- */
 .site-footer { padding-top: 56px; background: var(--bg-alt); border-top: 1px solid var(--line); }
 .site-footer__grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 34px; padding-bottom: 40px; }
 .site-footer__tagline { margin-top: 14px; max-width: 420px; font-size: 15px; color: var(--muted); }
@@ -333,7 +373,7 @@ svg { stroke: currentColor; }
 }
 .site-footer__top { font-weight: 600; }
 
-/* 8. Motion & responsive -------------------------------------------------- */
+/* 9. Motion & responsive -------------------------------------------------- */
 .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease var(--delay, 0ms), transform .6s ease var(--delay, 0ms); }
 .reveal.is-visible { opacity: 1; transform: none; }
 .no-js .reveal { opacity: 1; transform: none; }
@@ -379,11 +419,13 @@ svg { stroke: currentColor; }
 
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
+    .js .intro { display: none; }
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
     .reveal { opacity: 1; transform: none; }
 }
 
 @media print {
+    .intro { display: none !important; }
     .site-header, .burger, .hero__visual, .site-footer__top { display: none !important; }
     body { color: #000; background: #fff; }
     .card, .step, .contact__form-wrap { box-shadow: none; border: 1px solid #ccc; }

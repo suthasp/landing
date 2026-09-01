@@ -19,6 +19,87 @@
         });
     }
 
+    /* ---- อินโทรหน้าแรก: ตัวอักษรเจาะภาพ แล้วขยายออกตามการเลื่อน ---- */
+    var intro = document.getElementById('intro');
+    if (intro) {
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (reduced || window.location.hash) {
+            /* เข้ามาด้วยลิงก์ที่มี #anchor หรือผู้ใช้ปิดแอนิเมชัน → ข้ามอินโทรไปเลย */
+            intro.parentNode.removeChild(intro);
+            document.body.classList.add('intro-done');
+            var target = window.location.hash ? document.querySelector(window.location.hash) : null;
+            if (target) { target.scrollIntoView(); }
+        } else {
+            var media = document.getElementById('intro-media');
+            var svg   = document.getElementById('intro-mask');
+            var word  = document.getElementById('intro-word');
+            var text  = document.getElementById('intro-text');
+            var cover = document.getElementById('intro-cover');
+            var fill  = document.getElementById('intro-fill');
+            var mask  = document.getElementById('intro-cut');
+            var hint  = document.getElementById('intro-hint');
+
+            var MAX_SCALE = 70;      /* ขยายจนช่องเจาะกินพื้นที่ทั้งจอ */
+            var FADE_FROM = 0.86;    /* ช่วงท้ายค่อยๆ จางแผ่นดำ กันขอบตัวอักษรค้าง */
+            var cx = 0, cy = 0, lastWidth = 0, ticking = false;
+
+            var draw = function () {
+                var span = intro.offsetHeight - window.innerHeight;
+                var p = span > 0 ? Math.min(Math.max(window.scrollY / span, 0), 1) : 1;
+
+                var scale = 1 + Math.pow(p, 2.2) * (MAX_SCALE - 1);
+                word.setAttribute(
+                    'transform',
+                    'translate(' + (cx * (1 - scale)) + ' ' + (cy * (1 - scale)) + ') scale(' + scale + ')'
+                );
+                media.style.transform = 'scale(' + (1.12 - 0.12 * p) + ')';
+                cover.style.opacity = p > FADE_FROM ? String(Math.max(0, (1 - p) / (1 - FADE_FROM))) : '1';
+                hint.style.opacity = p > 0.03 ? '0' : '1';
+
+                document.body.classList.toggle('intro-done', p > 0.98);
+            };
+
+            /* ปรับขนาดตัวอักษรให้พอดีจอ แล้ววาดใหม่ */
+            var fit = function () {
+                var box = svg.getBoundingClientRect();
+                if (!box.width) { return; }
+                cx = box.width / 2;
+                cy = box.height / 2;
+                [cover, fill, mask].forEach(function (el) {
+                    el.setAttribute('width', String(Math.ceil(box.width)));
+                    el.setAttribute('height', String(Math.ceil(box.height)));
+                });
+                text.setAttribute('x', String(cx));
+                text.setAttribute('y', String(cy));
+                text.setAttribute('font-size', '100');
+                var len = text.getComputedTextLength() || 1;
+                var size = Math.min(100 * (box.width * 0.78) / len, box.height * 0.4);
+                text.setAttribute('font-size', String(size));
+                lastWidth = window.innerWidth;
+                draw();
+            };
+
+            var onIntroScroll = function () {
+                if (ticking) { return; }
+                ticking = true;
+                window.requestAnimationFrame(function () { ticking = false; draw(); });
+            };
+
+            /* ความกว้างเปลี่ยน = คำนวณขนาดตัวอักษรใหม่, สูงเปลี่ยนเฉยๆ (แถบ URL มือถือ) แค่วาดใหม่ */
+            var onResize = function () {
+                if (Math.abs(window.innerWidth - lastWidth) > 1) { fit(); } else { draw(); }
+            };
+
+            fit();
+            if (document.fonts && document.fonts.ready) { document.fonts.ready.then(fit); }
+            window.addEventListener('load', fit);
+            window.addEventListener('scroll', onIntroScroll, { passive: true });
+            window.addEventListener('resize', onResize);
+            window.addEventListener('orientationchange', fit);
+        }
+    }
+
     /* ---- เมนูมือถือ ---- */
     var burger = document.getElementById('nav-toggle');
     var nav = document.getElementById('primary-nav');

@@ -21,6 +21,10 @@ return [
         'webmail'  => 'Webmail Login',
     ],
 
+    'intro' => [
+        'scroll' => 'Scroll to enter',
+    ],
+
     'hero' => [
         'badge'      => 'Data Center Facility & Critical Environment Consultant',
         'title_1'    => 'Is Your Server Room Ready',

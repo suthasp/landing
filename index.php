@@ -38,11 +38,15 @@ require __DIR__ . '/inc/contact_handler.php';   // ทำงานเฉพา�
       document.documentElement.setAttribute('data-theme', 'dark');
     }
   } catch (e) {}
+  /* บอก CSS ว่าเปิด JS อยู่ — อินโทรหน้าแรกจะแสดงเฉพาะตอนนี้ */
+  document.documentElement.classList.add('js');
 })();
 </script>
 </head>
 <body>
-<?php /* จุดยึดของลิงก์ "กลับขึ้นด้านบน" ต้องไม่อยู่บน header ที่เป็น sticky
+<?php if (cfg('intro.enabled')) { section('intro'); } ?>
+
+<?php /* จุดยึดของลิงก์ "กลับขึ้นด้านบน" ต้องอยู่ใต้อินโทร และไม่อยู่บน header ที่เป็น sticky
          เพราะ header ติดขอบบนตลอด เบราว์เซอร์จะถือว่าเห็นอยู่แล้วและไม่เลื่อนหน้า */ ?>
 <span id="top"></span>
 <a class="skip-link" href="#main"><?= current_lang() === 'th' ? 'ข้ามไปยังเนื้อหาหลัก' : 'Skip to main content' ?></a>

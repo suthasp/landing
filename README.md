@@ -27,12 +27,15 @@ php -S localhost:8000
 | `inc/helpers.php` | `e()`, `t()`, `cfg()`, CSRF, flash message |
 | `inc/contact_handler.php` | รับ POST จากฟอร์ม → ตรวจสอบ → บันทึก → redirect |
 | `lang/th.php`, `lang/en.php` | ข้อความทั้งหมดของเว็บ (แก้คอนเทนต์ที่นี่) |
-| `partials/*.php` | แต่ละ section: header, hero, problems, services, products, why, process, contact, footer |
+| `partials/*.php` | แต่ละ section: intro, header, hero, problems, services, products, why, process, contact, footer |
 | `assets/` | CSS / JS / โลโก้ / favicon |
 | `storage/leads.csv` | รายชื่อผู้ติดต่อที่ส่งฟอร์มเข้ามา (สร้างอัตโนมัติ) |
 
 ## ฟีเจอร์
 
+- **อินโทรหน้าแรก** — ตัวอักษร `TEXSON` เจาะทะลุเห็นภาพห้อง Server เลื่อนลงแล้วขยายจนเต็มจอก่อนเข้าเว็บ
+  ตั้งค่าที่ `intro` ใน `inc/config.php` (เปิด/ปิด, ข้อความ, รูป) ใส่รูปที่ `assets/img/intro-bg.jpg`
+  ถ้าไม่มีรูปจะใช้พื้นหลังไล่สีแทน และข้ามอินโทรอัตโนมัติเมื่อเข้าลิงก์ที่มี `#anchor` หรือปิด JS
 - **สองภาษา TH / EN** — `?lang=th|en` แล้วจำด้วย cookie 1 ปี ข้อความทั้งหมดอยู่ใน `lang/`
 - **โหมดสว่าง / มืด** — ปุ่มบน header สลับทันทีด้วย JS และจำผ่าน cookie; ถ้าปิด JS ลิงก์ `?theme=` ก็ยังทำงาน
 - **ฟอร์มติดต่อใช้งานได้จริง** — ตรวจข้อมูลฝั่ง server, CSRF token, honeypot กันบอท,

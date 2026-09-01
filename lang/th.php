@@ -21,6 +21,10 @@ return [
         'webmail'  => 'เข้าสู่ระบบอีเมล',
     ],
 
+    'intro' => [
+        'scroll' => 'เลื่อนลงเพื่อเข้าสู่เว็บไซต์',
+    ],
+
     'hero' => [
         'badge'      => 'ที่ปรึกษา Data Center Facility & Critical Environment',
         'title_1'    => 'ห้อง Server ของคุณ',
