@@ -74,7 +74,7 @@
                 text.setAttribute('y', String(cy));
                 text.setAttribute('font-size', '100');
                 var len = text.getComputedTextLength() || 1;
-                var size = Math.min(100 * (box.width * 0.78) / len, box.height * 0.4);
+                var size = Math.min(100 * (box.width * 0.94) / len, box.height * 0.46);
                 text.setAttribute('font-size', String(size));
                 lastWidth = window.innerWidth;
                 draw();

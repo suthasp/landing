@@ -189,7 +189,7 @@ svg { stroke: currentColor; }
 
 .intro__mask { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .intro__mask, .intro__mask * { stroke: none; }
-#intro-text { font-family: "Poppins", var(--font-head); font-weight: 700; letter-spacing: .02em; }
+#intro-text { font-family: "Poppins", var(--font-head); font-weight: 800; letter-spacing: -.012em; }
 #intro-cover { transition: opacity .15s linear; }
 
 .intro__hint {
