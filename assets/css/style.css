@@ -192,14 +192,16 @@ svg { stroke: currentColor; }
 #intro-text { font-family: "Poppins", var(--font-head); font-weight: 800; letter-spacing: -.012em; }
 #intro-cover { transition: opacity .15s linear; }
 
+/* ข้อความไทยไม่ใส่ letter-spacing กว้างแบบตัวพิมพ์ใหญ่อังกฤษ เพราะสระ/วรรณยุกต์จะฉีกห่าง */
 .intro__hint {
-    position: absolute; left: 50%; bottom: 34px; z-index: 2; transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    font-family: var(--font-head); font-size: 12px; font-weight: 500; letter-spacing: .22em;
-    color: rgba(255, 255, 255, .74); text-align: center; text-transform: uppercase;
+    position: absolute; left: 50%; bottom: clamp(28px, 4vh, 44px); z-index: 2; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    font-family: var(--font-head); font-size: clamp(14px, 1.15vw, 16.5px); font-weight: 500;
+    letter-spacing: .02em; line-height: 1.6;
+    color: rgba(255, 255, 255, .88); text-align: center; text-shadow: 0 2px 14px rgba(0, 0, 0, .6);
     transition: opacity .3s ease;
 }
-.intro__hint svg { width: 20px; height: 20px; fill: none; animation: intro-bob 1.9s ease-in-out infinite; }
+.intro__hint svg { width: 26px; height: 26px; fill: none; opacity: .8; animation: intro-bob 1.9s ease-in-out infinite; }
 @keyframes intro-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 
 /* header โผล่หลังอินโทรจบ (อินโทรกับ header เป็นพี่น้องกันใน <body>) */
