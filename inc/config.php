@@ -16,8 +16,8 @@ $config = [
     'default_theme'=> 'light',                   // light | dark
 
     'contact' => [
-        'phone'      => '099-989-8888',
-        'phone_tel'  => '+66999898888',
+        'phone'      => '064-245-5169',
+        'phone_tel'  => '+66642455169',
         'email'      => 'support@texson.co.th',
         'line_id'    => '@texson',
     ],
