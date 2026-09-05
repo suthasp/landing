@@ -5,3 +5,24 @@ DirectoryIndex index.php
 <FilesMatch "\.(csv|log)$">
     Require all denied
 </FilesMatch>
+
+# ---- พิมพ์ URL ผิด / ไม่มีไฟล์หรือโฟลเดอร์นั้น → พากลับหน้าแรก ----
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # ไม่ยุ่งกับระบบเมล Roundcube ที่ติดตั้งแยกไว้
+    RewriteRule ^roundcube(/|$) - [L]
+
+    # ไฟล์สื่อ/สคริปต์ที่หาไม่เจอ ให้ตอบ 404 ตามปกติ
+    # (ถ้าเด้งไปหน้าแรก เบราว์เซอร์จะได้ HTML แทนรูปหรือ CSS ซึ่งทำให้ดีบักยาก)
+    RewriteCond %{REQUEST_URI} \.(css|js|map|png|jpe?g|gif|svg|webp|ico|woff2?|ttf|eot|pdf|zip|txt|xml|json)$ [NC]
+    RewriteRule ^ - [L]
+
+    # ที่เหลือ: ถ้า path ที่ขอไม่ใช่ไฟล์จริงและไม่ใช่โฟลเดอร์จริง ให้ส่งกลับหน้าแรก
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ / [R=302,L]
+</IfModule>
+
+# เผื่อโฮสต์ปิด mod_rewrite — อย่างน้อยยังได้หน้าแรกแทนหน้า Not Found ของ Apache
+ErrorDocument 404 /index.php

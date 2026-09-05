@@ -42,6 +42,8 @@ php -S localhost:8000
   จำกัดการส่งซ้ำ 30 วินาที, บันทึกลง CSV (มี BOM เปิดใน Excel อ่านภาษาไทยได้)
   และใช้รูปแบบ POST/Redirect/GET กันส่งซ้ำเวลา refresh
 - **Responsive + accessible** — เมนูมือถือ, skip link, `prefers-reduced-motion`, print stylesheet
+- **URL ผิดไม่เจอหน้า Not Found** — พิมพ์ลิงก์ผิดหรือเข้าโฟลเดอร์ที่ไม่มีจริง จะถูกส่งกลับหน้าแรก (ตั้งค่าใน `.htaccess`)
+  ยกเว้นไฟล์สื่อ/สคริปต์ (`.css`, `.js`, รูป ฯลฯ) ที่ยังตอบ 404 ตามปกติเพื่อให้ดีบักได้
 - **ไม่พึ่ง JavaScript** — ปิด JS แล้วยังอ่านและส่งฟอร์มได้ครบ
 
 ## ตั้งค่าส่งอีเมล (แชร์โฮสต์ไทย / cPanel / DirectAdmin)
